@@ -3,6 +3,7 @@ package bsu.edu.cs345.cs222gradecalculator;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 import java.text.DecimalFormat;
 
@@ -17,73 +18,91 @@ public class Controller {
     public Label Iteration2PercentGrade;
     public Label Iteration3PercentGrade;
     public Label FinalPercentGrade;
+    public ToggleGroup I1Proc;
+    public ToggleGroup I1Code;
+    public ToggleGroup I1Pres;
+    public ToggleGroup I1Reflection;
+    public ToggleGroup I2Proc;
+    public ToggleGroup I2Code;
+    public ToggleGroup I2Pres;
+    public ToggleGroup I2Reflection;
+    public ToggleGroup I3Code;
+    public ToggleGroup I3Proc;
+    public ToggleGroup I3Pres;
+    public ToggleGroup I3Reflection;
     private Iteration iteration1 = new Iteration(32);
     private Iteration iteration2 = new Iteration(128);
     private Iteration iteration3 = new Iteration(320);
-    private double finalGrade;
 
     public void updateIterationCodeGrade(ActionEvent actionEvent) {
         RadioButton button = (RadioButton) actionEvent.getSource();
-        if (button.getId().equals("1")) {
-            iteration1.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else if (button.getId().equals("2")){
-            iteration2.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else if (button.getId().equals("3")){
+        switch (button.getId()) {
+            case "1":
+                iteration1.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            case "2":
+                iteration2.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            case "3":
 
-            iteration3.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
+                iteration3.setCodeQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
         }
         calculateFinalGrade();
     }
     public void updateIterationProcessGrade(ActionEvent actionEvent) {
         RadioButton button = (RadioButton) actionEvent.getSource();
-        if (button.getId().equals("1")) {
-            iteration1.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else if (button.getId().equals("2")){
-            iteration2.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else {
-            iteration3.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
+        switch (button.getId()) {
+            case "1":
+                iteration1.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            case "2":
+                iteration2.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            default:
+                iteration3.setProcessQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
         }
         calculateFinalGrade();
     }
 
     public void updateIterationPresentationGrade(ActionEvent actionEvent) {
         RadioButton button = (RadioButton) actionEvent.getSource();
-        if (button.getId().equals("1")) {
-            iteration1.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else if (button.getId().equals("2")){
-            iteration2.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else {
-            iteration3.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
+        switch (button.getId()) {
+            case "1":
+                iteration1.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            case "2":
+                iteration2.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            default:
+                iteration3.setPresentationQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
         }
         calculateFinalGrade();
     }
 
     public void updateIterationReflectionGrade(ActionEvent actionEvent) {
         RadioButton button = (RadioButton) actionEvent.getSource();
-        if (button.getId().equals("1")) {
-            iteration1.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else if (button.getId().equals("2")){
-            iteration2.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
-        }
-        else {
-            iteration3.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
+        switch (button.getId()) {
+            case "1":
+                iteration1.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            case "2":
+                iteration2.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
+            default:
+                iteration3.setReflectionQuality(Integer.parseInt(button.getAccessibleText()));
+                break;
         }
         calculateFinalGrade();
     }
 
 
 
-    private double calculateFinalGrade(){
-        finalGrade = (iteration1.calculateIterationGrade() + iteration2.calculateIterationGrade() + iteration3.calculateIterationGrade());
+    private void calculateFinalGrade(){
+        double finalGrade = (iteration1.calculateIterationGrade() + iteration2.calculateIterationGrade() + iteration3.calculateIterationGrade());
         displayFinalGrade(finalGrade);
-        return finalGrade;
     }
 
     private void displayFinalGrade(double finalGrade){

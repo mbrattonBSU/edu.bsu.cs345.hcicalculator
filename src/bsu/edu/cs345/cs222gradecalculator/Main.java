@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("IterationUI.fxml"));
         primaryStage.setTitle("CS222 Final Project Grade Calculator");
         primaryStage.setScene(new Scene(root, 480, 650));
         primaryStage.show();
